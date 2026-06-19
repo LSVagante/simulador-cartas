@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+server_8765.pid
+.env
+.venv/
+venv/

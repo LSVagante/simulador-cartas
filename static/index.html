@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Simulador de Cartas</title>
+    <link rel="icon" type="image/png" href="/assets/logo-lj.png" />
+    <link rel="apple-touch-icon" href="/assets/logo-lj.png" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand-left">
+        <img src="/assets/logo-lj.png" alt="LJ Business & Automation" class="logo-lj" />
+        <div>
+          <h1>Simulador de Cartas</h1>
+          <p id="workbookInfo">Carregando planilha...</p>
+        </div>
+      </div>
+      <div class="topbar-actions">
+        <button id="updateDataBtn" type="button">Atualizar Dados</button>
+        <button id="reloadBtn" type="button">Recarregar</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel filters">
+        <div class="panel-title">
+          <h2>Filtros</h2>
+          <span id="countInfo">0 cartas</span>
+        </div>
+
+        <div class="calculator-grid">
+          <label>Credito alvo<input id="calc_credito" class="money-input" inputmode="numeric" placeholder="Ex.: R$ 80.000,00" /></label>
+          <label>Categoria<select id="categoria"></select></label>
+          <label>Entrada max<input id="calc_entrada" class="money-input" inputmode="numeric" /></label>
+          <label>Parcela max<input id="calc_parcela" class="money-input" inputmode="numeric" /></label>
+          <label>Saldo devedor
+            <select id="calc_saldo">
+              <option value="INDIFERENTE">Indiferente</option>
+              <option value="ABAIXO">Abaixo do credito</option>
+            </select>
+          </label>
+          <button id="calculateBtn" type="button">Calcular propostas</button>
+          <span id="calcInfo"></span>
+        </div>
+
+        <div class="filter-grid">
+          <label>
+            Busca
+            <input id="q" type="search" placeholder="Codigo, categoria, administradora" />
+          </label>
+          <label>
+            Administradoras
+            <div class="admin-dropdown" id="adminDropdown">
+              <button class="admin-toggle" id="adminToggle" type="button">
+                <span id="adminSummary">Todas</span>
+                <span class="admin-caret">v</span>
+              </button>
+              <div class="admin-menu" id="adminMenu"></div>
+            </div>
+          </label>
+          <label class="checkline">
+            <input id="disponivel" type="checkbox" checked />
+            Somente disponiveis
+          </label>
+        </div>
+
+        <div class="range-grid">
+          <label>Credito min<input id="credito_min" class="money-input" inputmode="numeric" /></label>
+          <label>Credito max<input id="credito_max" class="money-input" inputmode="numeric" /></label>
+          <label>Entrada min<input id="entrada_min" class="money-input" inputmode="numeric" /></label>
+          <label>Entrada max<input id="entrada_max" class="money-input" inputmode="numeric" /></label>
+          <label>Parcela min<input id="parcela_min" class="money-input" inputmode="numeric" /></label>
+          <label>Parcela max<input id="parcela_max" class="money-input" inputmode="numeric" /></label>
+          <label>Custo min<input id="custo_min" inputmode="decimal" placeholder="Ex.: 130%" /></label>
+          <label>Custo max<input id="custo_max" inputmode="decimal" placeholder="Ex.: 140%" /></label>
+        </div>
+
+        <div class="actions">
+          <button id="applyBtn" type="button">Aplicar filtros</button>
+          <button id="clearBtn" type="button" class="secondary">Limpar</button>
+          <button id="proposalBtn" type="button">Gerar proposta</button>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Proposta</th>
+                <th>Codigo</th>
+                <th>Categoria</th>
+                <th>Administradora</th>
+                <th>Credito</th>
+                <th>Entrada</th>
+                <th>Parcelas</th>
+                <th>Parcela</th>
+                <th>Saldo</th>
+                <th>Credito Total</th>
+                <th>Entrada Total</th>
+                <th>Parcela Total</th>
+                <th>Saldo Total</th>
+                <th>Custo</th>
+              </tr>
+            </thead>
+            <tbody id="cardsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel proposal">
+        <div class="panel-title">
+          <h2>Proposta</h2>
+          <span id="selectedInfo">0 selecionadas</span>
+        </div>
+        <pre id="proposalText">Selecione uma ou mais cartas e clique em Gerar proposta.</pre>
+        <button id="copyBtn" type="button" class="secondary">Copiar texto</button>
+      </aside>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
