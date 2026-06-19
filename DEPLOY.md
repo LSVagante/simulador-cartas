@@ -29,7 +29,9 @@ O arquivo `render.yaml` ja define:
 
 - comando de build: `pip install -r requirements.txt`
 - comando de start: `python app.py --host 0.0.0.0`
-- disco persistente em `data/` para o SQLite
+- plano `free` para teste sem disco persistente
+
+No plano gratis, alteracoes no SQLite feitas pelo botao `Atualizar Dados` podem se perder quando o servico dormir, reiniciar ou redeployar. Para teste isso e aceitavel; para producao, use Postgres ou um disco persistente pago.
 
 ## Railway
 
